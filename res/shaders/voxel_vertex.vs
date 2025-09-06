@@ -1,0 +1,33 @@
+precision mediump float;
+
+uniform mat4 u_worldViewProjection;
+uniform float u_voxelSize;
+uniform vec3 u_gridOffset;
+uniform bool u_ambientOcclusion;
+uniform float u_sliceHeight;
+
+attribute vec3 position;
+attribute vec3 voxelPosition;
+attribute vec3 normal;
+attribute vec4 colour;
+attribute vec4 occlusion;
+attribute vec2 texcoord;
+
+varying float v_lighting;
+varying vec4 v_occlusion;
+varying float v_sliced;
+varying vec2 v_texcoord;
+varying vec4 v_colour;
+
+vec3 light = vec3(0.78, 0.98, 0.59);
+
+void main() {
+    v_lighting = dot(light, abs(normal));
+    v_occlusion = occlusion;
+    v_texcoord = texcoord;
+    v_colour = colour;
+
+    // Slice flag based on voxel centre Y, not vertex Y
+    v_sliced = voxelPosition.y > u_sliceHeight ? 1.0 : 0.0;
+    gl_Position = u_worldViewProjection * vec4((position.xyz + u_gridOffset) * u_voxelSize, 1.0);
+}
