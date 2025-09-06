@@ -47,8 +47,10 @@
 body {
   margin: 0px;
   font-family: 'Rubik', sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   user-select: none;
+  min-height: 100vh;
 }
 
 .top-header {
@@ -76,11 +78,195 @@ canvas {
 
 .content {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
   flex-direction: column;
+}
+
+/* Tab Container Styles */
+.tab-container {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 60px);
+  overflow-y: auto;
+}
+
+.tab-buttons {
+  display: flex;
+  background: var(--gray-300);
+  border-bottom: 1px solid var(--gray-600);
+  padding: 0;
+  margin: 0;
+}
+
+.tab-button {
+  background: transparent;
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-family: 'Rubik', sans-serif;
+  font-size: var(--font-size-standard);
+  color: var(--text-dim);
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.tab-button:hover {
+  background: var(--gray-400);
+  color: var(--text-standard);
+}
+
+.tab-button.active {
+  background: var(--gray-500);
+  color: var(--text-bright);
+  border-bottom-color: var(--blue-600);
+}
+
+.tab-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.tab-panel {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+/* Image to 3D Styles */
+.image-to-3d-container {
+  padding: 20px;
+  min-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+}
+
+.viewer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border: 1px solid var(--gray-600);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.controls-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border: 1px solid var(--gray-600);
+  position: relative;
+  z-index: 1;
+}
+
+.api-key-section, .upload-section, .prompt-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.api-key-section label, .upload-section label, .prompt-section label {
+  font-weight: 500;
+  color: var(--text-standard);
+  font-size: var(--font-size-standard);
+}
+
+.api-key-section input, .upload-section input, .prompt-section input {
+  padding: 8px 12px;
+  border: 1px solid var(--gray-600);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-standard);
+  font-family: 'Rubik', sans-serif;
+}
+
+.api-key-section input:focus, .upload-section input:focus, .prompt-section input:focus {
+  outline: none;
+  border-color: var(--blue-600);
+  box-shadow: 0 0 0 2px var(--blue-400);
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#generate-btn {
+  background: var(--blue-600);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-standard);
+  font-family: 'Rubik', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#generate-btn:hover:not(:disabled) {
+  background: var(--blue-700);
+}
+
+#generate-btn:disabled {
+  background: var(--gray-400);
+  color: var(--text-dim);
+  cursor: not-allowed;
+}
+
+.status {
+  padding: 10px;
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-standard);
+  text-align: center;
+  margin-top: 10px;
+}
+
+.status.info {
+  background: var(--blue-400);
+  color: var(--blue-700);
+  border: 1px solid var(--blue-500);
+}
+
+.status.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.status.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+#model-canvas {
+  width: 800px !important;
+  height: 500px !important;
+  display: block;
+  cursor: grab;
+  border: 2px solid #ccc;
+  background: #f0f0f0;
+  border-radius: 4px;
+  position: relative;
+  z-index: 2;
 }
 
 .split {

@@ -16,12 +16,25 @@
 <body>
   <div class="content">
     <div class="top-header" id="header"></div>
-    <div class="split column-canvas" id="col-canvas">
-      <canvas id="canvas"></canvas>
-      <div class="toolbar" id="toolbar"></div>
-    </div>
-    <div class="bottom-settings">
-      <div class="column-properties" id="properties"></div>
+    <div class="tab-container">
+      <div class="tab-buttons">
+        <button class="tab-button active" data-tab="3d-converter">3D変換ツール</button>
+        <button class="tab-button" data-tab="image-to-3d">画像→3D生成</button>
+      </div>
+      <div class="tab-content">
+        <div class="tab-panel active" id="3d-converter">
+          <div class="split column-canvas" id="col-canvas">
+            <canvas id="canvas"></canvas>
+            <div class="toolbar" id="toolbar"></div>
+          </div>
+          <div class="bottom-settings">
+            <div class="column-properties" id="properties"></div>
+          </div>
+        </div>
+        <div class="tab-panel" id="image-to-3d">
+          <div class="image-to-3d-container" id="image-to-3d-container"></div>
+        </div>
+      </div>
     </div>
   </div>
 </body>

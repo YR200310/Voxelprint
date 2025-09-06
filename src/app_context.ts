@@ -18,6 +18,8 @@ import { Vector3 } from './vector';
 import { PALETTE_ALL_RELEASE } from '../res/palettes/all';
 import { WorkerController } from './worker_controller';
 import { TFromWorkerMessage } from './worker_types';
+import { TabManager } from './tab_manager';
+import { ImageTo3DComponent } from './ui/components/image_to_3d';
 
 export class AppContext {
     /* Singleton */
@@ -32,6 +34,7 @@ export class AppContext {
     public maxConstraint?: { x: number, z: number };
     private _materialManager: MaterialMapManager;
     private _loadedFilename: string | null;
+    private _imageTo3DComponent: ImageTo3DComponent | null = null;
 
     private constructor() {
         this._workerController = new WorkerController();
@@ -60,23 +63,43 @@ export class AppContext {
         // Start with main actions enabled so inputs/buttons are clickable
         UI.Get.enableTo(EAction.Export);
 
-        // Auto-run import and voxelise when a file is selected
-        UI.Get.layout.import.components.input.addValueChangedListener(async () => {
-            await this.Get.do(EAction.Import);
-            await this.Get.do(EAction.Voxelise);
-        });
+        // Auto-run import and voxelise when a file is selected (if layout exists)
+        try {
+            if (UI.Get.layout && UI.Get.layout.import && UI.Get.layout.import.components) {
+                UI.Get.layout.import.components.input.addValueChangedListener(async () => {
+                    await this.Get.do(EAction.Import);
+                    await this.Get.do(EAction.Voxelise);
+                });
+            }
+        } catch (error) {
+            console.warn('Failed to set up import listener:', error);
+        }
 
         ArcballCamera.Get.init();
         MouseManager.Get.init();
 
         window.addEventListener('contextmenu', (e) => e.preventDefault());
 
+        // ワーカーの初期化を安全に実行
         this.Get._workerController.execute({ action: 'Init', params: {}}).then(() => {
+            UI.Get.enableTo(EAction.Export);
+            LOG(LOC('init.ready'));
+        }).catch((error) => {
+            console.warn('Worker initialization failed, continuing without worker:', error);
             UI.Get.enableTo(EAction.Export);
             LOG(LOC('init.ready'));
         });
 
         ArcballCamera.Get.toggleAngleSnap();
+
+        // Initialize tab manager
+        TabManager.Get;
+
+        // Initialize image to 3D component
+        const imageTo3DContainer = document.getElementById('image-to-3d-container');
+        if (imageTo3DContainer) {
+            this.Get._imageTo3DComponent = new ImageTo3DComponent(imageTo3DContainer);
+        }
 
         // Language switching removed in simplified UI
     }
