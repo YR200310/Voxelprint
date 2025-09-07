@@ -28,6 +28,12 @@ export class StabilityAPI {
       return this.generateAdvancedFallbackModel(imageFile, prompt);
     }
 
+    // 画像形式の検証
+    const supportedTypes = ['image/png', 'image/jpeg'];
+    if (!supportedTypes.includes(imageFile.type)) {
+      throw new Error(`サポートされていない画像形式です: ${imageFile.type}。PNGまたはJPEG画像を使用してください。`);
+    }
+
     // APIエンドポイントの簡易チェック（APIキーが"test"やURLが明らかに不正な場合はフォールバック）
     if (
       this.apiKey === 'test' ||
