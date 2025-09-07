@@ -28,6 +28,15 @@ export class StabilityAPI {
       return this.generateAdvancedFallbackModel(imageFile, prompt);
     }
 
+    // APIエンドポイントの簡易チェック（APIキーが"test"やURLが明らかに不正な場合はフォールバック）
+    if (
+      this.apiKey === 'test' ||
+      !/^https:\/\/api\.stability\.ai\/v2beta\/3d\/stable-fast-3d$/.test('https://api.stability.ai/v2beta/3d/stable-fast-3d')
+    ) {
+      console.warn('APIキーまたはエンドポイントがテスト用/不正です。フォールバック生成を使用します。');
+      return this.generateAdvancedFallbackModel(imageFile, prompt);
+    }
+
     try {
       // Stability AI Stable Fast 3D APIを試行
       const formData = new FormData();
@@ -36,11 +45,11 @@ export class StabilityAPI {
       formData.append('foreground_ratio', '0.85');
 
       console.log('Calling Stability AI Stable Fast 3D API...');
-      const response = await fetch('https://api.stability.ai/v1/generation/stable-fast-3d', {
+      const response = await fetch('https://api.stability.ai/v2beta/3d/stable-fast-3d', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${this.apiKey}`,
-          'Accept': 'application/json',
+          // Do NOT set 'Content-Type' or 'Accept' headers here
         },
         body: formData
       });
@@ -48,7 +57,13 @@ export class StabilityAPI {
       if (!response.ok) {
         const errorText = await response.text();
         console.error('Stable Fast 3D API request failed:', response.status, response.statusText, errorText);
-        
+
+        // 404の場合はthrowせず、フォールバック生成へ
+        if (response.status === 404) {
+          console.warn('APIエンドポイントが見つかりません (404)。フォールバック生成を使用します。');
+          return this.generateAdvancedFallbackModel(imageFile, prompt);
+        }
+
         // 特定のエラーコードに基づく詳細なメッセージ
         if (response.status === 401) {
           throw new Error('API認証エラー: APIキーが無効または期限切れです');
@@ -877,13 +892,14 @@ export class StabilityAPI {
   }
 
   private async generateEnhancedFallbackModel(): Promise<Blob> {
-    // より複雑な3Dモデルを生成（球体ベース）
-    const segments = 16;
+    // 球体の頂点を生成
+    const segments = 16; // 適切なセグメント数を設定
     const positions: number[] = [];
     const normals: number[] = [];
     const indices: number[] = [];
+    // Fallbackモデルではcolorsは使用されないため削除またはコメントアウト
+    // const colors: number[] = [];
 
-    // 球体の頂点を生成
     for (let lat = 0; lat <= segments; lat++) {
       const theta = lat * Math.PI / segments;
       const sinTheta = Math.sin(theta);

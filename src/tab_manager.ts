@@ -29,3 +29,4 @@ export class TabManager {
     document.querySelector(`.tab-button[data-tab="${tabId}"]`)?.classList.add('active');
   }
 }
+

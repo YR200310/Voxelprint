@@ -348,5 +348,3 @@ export class ArcballCamera {
     }
 }
 
-
-module.exports.ArcballCamera = ArcballCamera;
