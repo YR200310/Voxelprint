@@ -3,11 +3,12 @@
 ## 特徴
 
 ### デモ動画1
-<video src="https://github.com/user-attachments/assets/2831fb6f-c20a-420e-a2aa-991ba65e55e7" controls width="100%"></video>
+
+
+https://github.com/user-attachments/assets/8d93d91d-c870-45b8-914e-a72e229f9e80
 
 ### デモ動画2
-<video src="https://github.com/user-attachments/assets/4890b020-dbf6-4d3d-a670-0b09fc87733b" controls width="100%"></video>
-
+https://github.com/user-attachments/assets/61ba02f4-6e2a-4364-a994-126f85914008
 
 
 - **3Dモデルインポート**: OBJ, GLTF形式の3Dモデルをサポート
