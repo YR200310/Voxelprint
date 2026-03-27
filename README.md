@@ -8,7 +8,11 @@
 
 
 * [デモ動画](https://github.com/user-attachments/assets/4890b020-dbf6-4d3d-a670-0b09fc87733b)
+### デモ動画1：機能の紹介
+<video src="https://github.com/user-attachments/assets/2831fb6f-c20a-420e-a2aa-991ba65e55e7" controls width="100%"></video>
 
+### デモ動画2：操作方法
+<video src="https://github.com/user-attachments/assets/4890b020-dbf6-4d3d-a670-0b09fc87733b" controls width="100%"></video>
 
 - **3Dモデルインポート**: OBJ, GLTF形式の3Dモデルをサポート
 - **画像から3D生成**: Stability AI APIを使って画像から3Dモデルを生成
