@@ -30,7 +30,7 @@ export class ImageTo3DComponent {
 
           <div class="api-key-section">
             <label for="api-key">Stability AI API Key:</label>
-            <input type="password" id="api-key" placeholder="APIキーを入力してください" value="sk-pQNiiu1aY1a8Zmyxp6xlPt13ljGvAGbwLjdMGAODpCAfGI5D">
+            <input type="password" id="api-key" placeholder="APIキーを入力してください">
           </div>
 
           <div class="upload-section">
@@ -63,7 +63,7 @@ export class ImageTo3DComponent {
     const apiKeyInput = this.container.querySelector('#api-key') as HTMLInputElement;
 
     // Initialize with default API key
-    this.stabilityAPI = new StabilityAPI('sk-pQNiiu1aY1a8Zmyxp6xlPt13ljGvAGbwLjdMGAODpCAfGI5D');
+    this.stabilityAPI = null;
     this.updateGenerateButton();
 
     apiKeyInput.addEventListener('input', () => {
