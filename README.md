@@ -89,33 +89,7 @@ npm run dist
 - .nbt: NBT形式
 - .schem: WorldEditスキーマ
 
-## 開発
-
-### テスト実行
-```bash
-npm test
-```
-
-### リンター実行
-```bash
-npm run lint
-```
-
-### アトラスビルド
-```bash
-npm run atlas
-```
-
-## ライセンス
-
-BSD-3-Clause License
-
-## 貢献
-
-プルリクエストやイシューを歓迎します！
-
-## 謝辞
 
 - [Three.js](https://threejs.org/) - 3Dレンダリング
 - [Stability AI](https://stability.ai/) - 画像から3D生成API
-- [Minecraft](https://www.minecraft.net/) - 素晴らしいゲーム
+
