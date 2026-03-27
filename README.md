@@ -1,5 +1,3 @@
-# ObjToSchematic
-
 画像や3DモデルをMinecraftのブロックに変換するツールです。3Dモデルをボクセル化し、Minecraftの設計図ファイル（.schematic, .litematic, .nbt, .schem）としてエクスポートできます。
 
 ## 特徴
