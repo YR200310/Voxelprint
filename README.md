@@ -2,31 +2,13 @@
 
 ## 特徴
 
-* [デモ動画](https://github.com/user-attachments/assets/2831fb6f-c20a-420e-a2aa-991ba65e55e7)
-
-
-
-
-* [デモ動画](https://github.com/user-attachments/assets/4890b020-dbf6-4d3d-a670-0b09fc87733b)
-### デモ動画1：機能の紹介
+### デモ動画1
 <video src="https://github.com/user-attachments/assets/2831fb6f-c20a-420e-a2aa-991ba65e55e7" controls width="100%"></video>
 
-### デモ動画2：操作方法
+### デモ動画2
 <video src="https://github.com/user-attachments/assets/4890b020-dbf6-4d3d-a670-0b09fc87733b" controls width="100%"></video>
 
-## 特徴
 
-<figure>
-  <figcaption><b>🎬 デモ動画：機能の紹介</b></figcaption>
-  <video src="https://github.com/user-attachments/assets/2831fb6f-c20a-420e-a2aa-991ba65e55e7" controls width="100%"></video>
-</figure>
-
-<br>
-
-<figure>
-  <figcaption><b>🎬 デモ動画：操作方法</b></figcaption>
-  <video src="https://github.com/user-attachments/assets/4890b020-dbf6-4d3d-a670-0b09fc87733b" controls width="100%"></video>
-</figure>
 
 - **3Dモデルインポート**: OBJ, GLTF形式の3Dモデルをサポート
 - **画像から3D生成**: Stability AI APIを使って画像から3Dモデルを生成
