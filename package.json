@@ -15,7 +15,8 @@
     "dist": "webpack --config ./webpack.prod.js",
     "atlas": "ts-node ./tools/build-atlas.ts",
     "headless": "ts-node ./tools/run-headless.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "test": "jest --config jestconfig.json --passWithNoTests"
   },
   "repository": {
     "type": "git",
