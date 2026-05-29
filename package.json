@@ -75,12 +75,12 @@
     "webpack-merge": "^5.8.0",
     "webpack-strip-block": "^0.3.0",
     "worker-loader": "^3.0.8",
-    "@types/three": "^r128"
+    "@types/three": "^0.128.0"
   },
   "dependencies": {
     "@loaders.gl/core": "^3.3.1",
     "@loaders.gl/gltf": "^3.3.1",
     "split.js": "^1.6.5",
-    "three": "^r128"
+    "three": "^0.128.0"
   }
 }
